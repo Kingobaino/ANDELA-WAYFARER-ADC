@@ -1,0 +1,1 @@
+WayFarer is a public bus server where customers can book a seat for a trip.
