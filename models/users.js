@@ -16,10 +16,14 @@ const create = async (data) => {
   );
   return newItem.rows[0];
 };
-
-const findOne = async (email) => {
-    const user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
-    return user.rows[0];
+ const findOne = async (email) => {   
+ const user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);  
+   return user.rows[0];
   };
 
-  export { create, findOne};
+  const matchOne = async (email) => {
+    const user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);
+    return user.rows[0];
+  }
+
+  export { create, findOne, matchOne};
