@@ -6,6 +6,7 @@ chai.use(chaiHttp);
 
 let adminToken;
 
+describe("POST Users can create a booking", () => {
 describe("POST Signup", () => {
   it("should sign up a user if correct detaiils are provided", done => {
     chai
@@ -144,7 +145,7 @@ describe("POST Create a trip", () => {
         done();
       });
   });
-
+});
   it("User without a token should not create a trip", done => {
     chai
       .request(server)
@@ -199,3 +200,5 @@ describe("GET View trips", () => {
       });
   });
 });
+
+
