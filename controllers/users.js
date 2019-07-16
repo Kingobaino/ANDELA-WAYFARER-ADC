@@ -1,14 +1,19 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
-import { create, findOne, matchOne, createTrip } from "../models/users";
+import {
+  create,
+  findOne,
+  createTrip,
+  findAll
+} from "../models/users";
 
 dotenv.config();
 
 const users = {
   async create(req, res) {
     try {
-      const user = await matchOne(req.body.email);
+      const user = await findOne(req.body.email);
       if (user) {
         return res.status(409).json({ error: "Email already exists" });
       }
@@ -55,6 +60,15 @@ const users = {
     try {
       const newTrip = await createTrip(req.body);
       return res.status(201).json({ status: "success", data: { ...newTrip } });
+    } catch (error) {
+      return res.status(500).json(error);
+    }
+  },
+
+  async view(req, res) {
+    try {
+      const trips = await findAll();
+      return res.status(200).json({ status: "sucess", data: { ...trips } });
     } catch (error) {
       return res.status(500).json(error);
     }

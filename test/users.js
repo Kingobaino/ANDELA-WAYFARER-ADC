@@ -106,7 +106,7 @@ describe("POST Create a trip", () => {
   it("Admin should be able to create a trip", done => {
     chai
       .request(server)
-      .post("/api/v1/trip")
+      .post("/api/v1/trips")
       .set("Authorization", `Bearer ${adminToken}`)
       .send({
         busId: "1",
@@ -127,7 +127,7 @@ describe("POST Create a trip", () => {
   it("A non admin user should not be able to create  a trip", done => {
     chai
       .request(server)
-      .post("/api/v1/trip")
+      .post("/api/v1/trips")
       .set("Authorization", "Bearer tyttujijhnddbhffh")
       .send({
         bus_id: "2",
@@ -148,7 +148,7 @@ describe("POST Create a trip", () => {
   it("User without a token should not create a trip", done => {
     chai
       .request(server)
-      .post("/api/v1/trip")
+      .post("/api/v1/trips")
       .send({
         bus_id: "2",
         origin: "ugwuoba",
@@ -168,7 +168,7 @@ describe("POST Create a trip", () => {
   it("User with a  wrong token should not create a trip", done => {
     chai
       .request(server)
-      .post("/api/v1/trip")
+      .post("/api/v1/trips")
       .send({
         bus_id: "2",
         origin: "ugwuoba",
@@ -180,6 +180,20 @@ describe("POST Create a trip", () => {
       .end((err, res) => {
         expect(res).to.have.status(401);
         expect(res.body.error).to.equal("Token not provided");
+        expect(err).to.be.null;
+        done();
+      });
+  });
+});
+
+describe("GET View trips", () => {
+  it("Both user and admin should be able to view all trips", done => {
+    chai
+      .request(server)
+      .get("/api/v1/trips")
+      .set("Authorization", `Bearer ${adminToken}`)
+      .end((err, res) => {
+        expect(res).to.have.status(200);
         expect(err).to.be.null;
         done();
       });
