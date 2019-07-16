@@ -16,6 +16,21 @@ const create = async (data) => {
   );
   return newItem.rows[0];
 };
+
+const createTrip = async (data) => {
+  const {
+    busId, origin, destination, tripdate, fare, status
+  } = data;
+  const newItem = await pool.query(
+    `INSERT INTO trip(
+      bus_id, origin, destination, trip_date, fare, status
+      ) 
+     VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
+    [busId, origin, destination, tripdate, fare, status]
+  );
+  return newItem.rows[0];
+};
+
  const findOne = async (email) => {   
  const user = await pool.query(`SELECT * FROM users WHERE email = $1`, [email]);  
    return user.rows[0];
@@ -26,4 +41,4 @@ const create = async (data) => {
     return user.rows[0];
   }
 
-  export { create, findOne, matchOne};
+  export { create, findOne, matchOne, createTrip};
