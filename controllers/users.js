@@ -89,7 +89,7 @@ const users = {
   async viewBookings (req, res) {
     try {
       const bookings = await viewAllBookings();
-      return res.status(200).json({ status: "success", data: { bookings } });
+      return res.status(200).json({ status: "success", data: [bookings] });
     } catch (error) {
       return res.status(500).json(error)
     }
