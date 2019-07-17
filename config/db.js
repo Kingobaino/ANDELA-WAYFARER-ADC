@@ -22,6 +22,7 @@ const tripQueryText = `
     destination TEXT NOT NULL,
     trip_date TEXT,
     fare FLOAT(2) NOT NULL,
+    token TEXT,
     status FLOAT(2)
   )
 `;
@@ -29,10 +30,8 @@ const tripQueryText = `
 const bookingQueryText = `
   CREATE TABLE IF NOT EXISTS booking(
     id SERIAL PRIMARY KEY,
-    bus_id TEXT,
-    trip_id TEXT NOT NULL,
-    user_id VARCHAR,
-    created_on TIMESTAMP
+    token TEXT,
+    trip_id TEXT NOT NULL
   )
 `;
 const busQueryText = `CREATE TABLE IF NOT EXISTS bus(

@@ -115,7 +115,7 @@ describe("POST Create a trip", () => {
         destination: "Lagos",
         trip_date: "10-25-1988",
         fare: "20.00",
-        status: "30.00"
+        token: adminToken
       })
       .end((err, res) => {
         expect(res).to.have.status(201);
@@ -136,7 +136,7 @@ describe("POST Create a trip", () => {
         destination: "Lagos",
         trip_date: "25-11-1988",
         fare: "20.00",
-        status: "30.00"
+        token: adminToken
       })
       .end((err, res) => {
         expect(res).to.have.status(401);
@@ -156,7 +156,7 @@ describe("POST Create a trip", () => {
         destination: "Mgbakwu",
         trip_date: "25-10-1988",
         fare: "20.00",
-        status: "30.00"
+        token: adminToken
       })
       .end((err, res) => {
         expect(res).to.have.status(401);
@@ -176,7 +176,7 @@ describe("POST Create a trip", () => {
         destination: "Lagos",
         trip_date: "25-10-1988",
         fare: "20.00",
-        status: "30.00"
+        token: adminToken
       })
       .end((err, res) => {
         expect(res).to.have.status(401);

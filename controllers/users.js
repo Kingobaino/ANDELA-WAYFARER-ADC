@@ -7,7 +7,8 @@ import {
   createTrip,
   findAll,
   booking,
-  viewAll
+  viewAll,
+  viewAllBookings
 } from "../models/users";
 
 dotenv.config();
@@ -82,6 +83,15 @@ const users = {
       return res.status(201).json({ status: "success", data: { ...carryGo } });
     } catch (error) {
       return res.status(500).json("Booking was not successful");
+    }
+  },
+
+  async viewBookings (req, res) {
+    try {
+      const bookings = await viewAllBookings();
+      return res.status(200).json({ status: "success", data: { bookings } });
+    } catch (error) {
+      return res.status(500).json(error)
     }
   }
 };
