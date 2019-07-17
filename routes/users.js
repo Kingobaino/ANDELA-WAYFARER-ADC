@@ -11,6 +11,6 @@ router.post('/auth/signup', users.create);
 router.post('/auth/signin', users.signin);
 router.post('/trips', verifyJwt, verifyAdmin, users.createTrip);
 router.get('/trips', verifyJwt, users.view);
-
+router.post('/bookings', verifyJwt, users.booking);
 
 export default router;

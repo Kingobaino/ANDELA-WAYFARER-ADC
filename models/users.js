@@ -27,6 +27,18 @@ const createTrip = async data => {
   return newItem.rows[0];
 };
 
+const booking = async data => {
+  const {busId, tripId, userId, createdOn} = data;
+  const newItem = await pool.query(
+    `INSERT INTO booking(
+      bus_id, user_id, trip_id, created_on
+      ) 
+     VALUES($1, $2, $3, $4) RETURNING *`,
+    [busId, tripId, userId, createdOn, ]
+  );
+  return newItem.rows[0];
+};
+
 const findOne = async email => {
   const user = await pool.query(`SELECT * FROM users WHERE email = $1`, [
     email
@@ -39,4 +51,4 @@ const findAll = async () => {
   return user.rows;
 };
 
-export { create, findOne, createTrip, findAll };
+export { create, findOne, createTrip, findAll, booking};
