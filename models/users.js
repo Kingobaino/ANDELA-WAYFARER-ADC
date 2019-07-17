@@ -16,13 +16,13 @@ const create = async data => {
 };
 
 const createTrip = async data => {
-  const { bus_id, origin, destination, trip_date, fare, token } = data;
+  const { bus_id, origin, destination, trip_date, fare, token, is_admin, user_id } = data;
   const newItem = await pool.query(
     `INSERT INTO trip(
-      bus_id, origin, destination, trip_date, fare, token
+      bus_id, origin, destination, trip_date, fare, token, is_admin, user_id
       ) 
-     VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
-    [bus_id, origin, destination, trip_date, fare, token]
+     VALUES($1, $2, $3, $4, $5, $6, $7, $8) RETURNING *`,
+    [bus_id, origin, destination, trip_date, fare, token, is_admin, user_id]
   );
   return newItem.rows[0];
 };

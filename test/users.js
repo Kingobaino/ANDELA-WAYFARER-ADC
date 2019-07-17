@@ -115,7 +115,9 @@ describe("POST Create a trip", () => {
         destination: "Lagos",
         trip_date: "10-25-1988",
         fare: "20.00",
-        token: adminToken
+        token: adminToken,
+        is_admin: true,
+        user_id: 2
       })
       .end((err, res) => {
         expect(res).to.have.status(201);

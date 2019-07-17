@@ -14,6 +14,10 @@ const port = process.env.PORT || 5000;
 // when a random route is inputed
 app.use('/api/v1', v1Router);
 
+app.get('/', (req, res) => {
+   res.send('Welcome to Wayfarer');
+})
+
 
 app.listen(port, () => {
    console.log(`I love You at PORT ${port}`);

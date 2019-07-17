@@ -18,12 +18,13 @@ const tripQueryText = `
   CREATE TABLE IF NOT EXISTS trip(
     id SERIAL PRIMARY KEY,
     bus_id VARCHAR(124),
-    origin TEXT NOT NULL,
-    destination TEXT NOT NULL,
+    origin TEXT,
+    destination TEXT,
     trip_date TEXT,
-    fare FLOAT(2) NOT NULL,
+    fare FLOAT(2),
+    user_id TEXT,
     token TEXT,
-    status FLOAT(2)
+    is_admin BOOLEAN
   )
 `;
 
