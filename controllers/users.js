@@ -1,7 +1,14 @@
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import dotenv from "dotenv";
-import { create, findOne, createTrip, findAll, booking } from "../models/users";
+import {
+  create,
+  findOne,
+  createTrip,
+  findAll,
+  booking,
+  viewAll
+} from "../models/users";
 
 dotenv.config();
 
@@ -74,7 +81,6 @@ const users = {
       const carryGo = await booking(req.body);
       return res.status(201).json({ status: "success", data: { ...carryGo } });
     } catch (error) {
-      console.log(error)
       return res.status(500).json("Booking was not successful");
     }
   }

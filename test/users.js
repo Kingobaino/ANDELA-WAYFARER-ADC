@@ -14,8 +14,8 @@ describe("POST Signup", () => {
       .post("/api/v1/auth/signup")
       .send({
         email: "test@tester.com",
-        firstname: "Rihanna",
-        lastname: "Ndukwe",
+        first_name: "Rihanna",
+        last_name: "Ndukwe",
         password: "incorrect",
         is_admin: true
       })
@@ -34,8 +34,8 @@ describe("POST Signup", () => {
       .post("/api/v1/auth/signup")
       .send({
         email: "test@tester.com",
-        firstname: "Beyonce",
-        lastname: "Mbakwe",
+        first_name: "Beyonce",
+        last_name: "Mbakwe",
         password: "incorrect",
         is_admin: false
       })
@@ -55,8 +55,8 @@ describe("POST Signin", () => {
       .post("/api/v1/auth/signin")
       .send({
         email: "test@tester1.com",
-        firstname: "Beyonce",
-        lastname: "Mbakwe",
+        first_name: "Beyonce",
+        last_name: "Mbakwe",
         password: "incorrect",
         is_admin: false
       })
@@ -74,8 +74,8 @@ describe("POST Signin", () => {
       .post("/api/v1/auth/signin")
       .send({
         email: "test@tester.com",
-        firstname: "Beyonce",
-        lastname: "Mbakwe",
+        first_name: "Beyonce",
+        last_name: "Mbakwe",
         password: "correct",
         is_admin: false
       })
@@ -110,10 +110,10 @@ describe("POST Create a trip", () => {
       .post("/api/v1/trips")
       .set("Authorization", `Bearer ${adminToken}`)
       .send({
-        busId: "1",
+        bus_id: "1",
         origin: "Awka",
         destination: "Lagos",
-        tripdate: "10-25-1988",
+        trip_date: "10-25-1988",
         fare: "20.00",
         status: "30.00"
       })
