@@ -16,25 +16,25 @@ const create = async data => {
 };
 
 const createTrip = async data => {
-  const { bus_id, origin, destination, trip_date, fare, status } = data;
+  const { bus_id, origin, destination, trip_date, fare, token } = data;
   const newItem = await pool.query(
     `INSERT INTO trip(
-      bus_id, origin, destination, trip_date, fare, status
+      bus_id, origin, destination, trip_date, fare, token
       ) 
      VALUES($1, $2, $3, $4, $5, $6) RETURNING *`,
-    [bus_id, origin, destination, trip_date, fare, status]
+    [bus_id, origin, destination, trip_date, fare, token]
   );
   return newItem.rows[0];
 };
 
 const booking = async data => {
-  const {busId, trip_id, userId, createdOn} = data;
+  const {trip_id, token} = data;
   const newItem = await pool.query(
     `INSERT INTO booking(
-      bus_id, user_id, trip_id, created_on
+      trip_id, token
       ) 
      VALUES($1, $2, $3, $4) RETURNING *`,
-    [busId, trip_id, userId, createdOn, ]
+    [trip_id, token]
   );
   return newItem.rows[0];
 };
@@ -51,8 +51,9 @@ const findAll = async () => {
   return user.rows;
 };
 
-const viewAll = async () => {
-  const user = await pool.query(`SELECT * FROM users WHERE email = $1`, [ user_id]);
+const viewAllBookings = async () => {
+  const user = await pool.query(`SELECT * FROM booking ORDER BY id ASC`);
+  return user.rows;
 }
  
-export { create, findOne, createTrip, findAll, booking, viewAll};
+export { create, findOne, createTrip, findAll, booking, viewAllBookings };
